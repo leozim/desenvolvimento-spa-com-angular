@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-import { UserComponent } from './user/user.component';ferwfer
+import { UserComponent } from './user/user.component';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +11,5 @@ import { UserComponent } from './user/user.component';ferwfer
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'first-angular18-app';de
+  title = 'first-angular18-app';
 }
