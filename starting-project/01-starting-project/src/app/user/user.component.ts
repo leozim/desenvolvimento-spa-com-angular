@@ -1,4 +1,4 @@
-import { Component, computed, Input, input, signal } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 
@@ -11,8 +11,11 @@ import { DUMMY_USERS } from '../dummy-users';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  @Input({required: true}) avatar!: string;
-  @Input({required: true}) name!: string;
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string;
+
+  @Output() select = new EventEmitter<string>();
 
   // readonly can use .set() to update the value of the signal, 
   // but it cannot be reassigned to a new signal.
@@ -24,25 +27,26 @@ export class UserComponent {
   };
 
   onSelectUser(user: any): void {
+    this.select.emit(this.id);
     console.log('User selected:', user);
   }
-//  selectedUser = signal(DUMMY_USERS[randomIndex]);
-//  imagePath = computed(() => `assets/users/${this.selectedUser().avatar}`);
+  //  selectedUser = signal(DUMMY_USERS[randomIndex]);
+  //  imagePath = computed(() => `assets/users/${this.selectedUser().avatar}`);
 
-//  get imagePath(): string {
-//     return `assets/users/${this.selectedUser.avatar}`;
-    
-//  }
+  //  get imagePath(): string {
+  //     return `assets/users/${this.selectedUser.avatar}`;
 
-//  onSelectUser(user: any): void {
-//     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-//     this.selectedUser.set(DUMMY_USERS[randomIndex]);
+  //  }
 
-//     console.log('User selected:', user);
-//  }
-//  onSelectUser(user: any): void {
-//     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-//     this.selectedUser = DUMMY_USERS[randomIndex];
-//     console.log('User selected:', user);
-//  }
+  //  onSelectUser(user: any): void {
+  //     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+  //     this.selectedUser.set(DUMMY_USERS[randomIndex]);
+
+  //     console.log('User selected:', user);
+  //  }
+  //  onSelectUser(user: any): void {
+  //     const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
+  //     this.selectedUser = DUMMY_USERS[randomIndex];
+  //     console.log('User selected:', user);
+  //  }
 }
