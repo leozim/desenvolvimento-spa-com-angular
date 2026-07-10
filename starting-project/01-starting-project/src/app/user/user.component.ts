@@ -1,4 +1,4 @@
-import { Component, Input, input /*, computed, signal*/ } from '@angular/core';
+import { Component, computed, Input, input, signal } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 
@@ -11,15 +11,17 @@ import { DUMMY_USERS } from '../dummy-users';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  // @Input({required: true}) avatar!: string;
-  // @Input({required: true}) name!: string;
+  @Input({required: true}) avatar!: string;
+  @Input({required: true}) name!: string;
 
-  avatar = input();
-  name = input();
+  // readonly can use .set() to update the value of the signal, 
+  // but it cannot be reassigned to a new signal.
+  // avatar = input.required<string>();
+  // name = input.required<string>();
 
   get imagePath(): string {
     return `assets/users/${this.avatar}`;
-  }
+  };
 
   onSelectUser(user: any): void {
     console.log('User selected:', user);
