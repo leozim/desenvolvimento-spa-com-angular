@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, output } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
 
 
@@ -16,6 +16,7 @@ export class UserComponent {
   @Input({ required: true }) name!: string;
 
   @Output() select = new EventEmitter<string>();
+  selectUser = output<string>();
 
   // readonly can use .set() to update the value of the signal, 
   // but it cannot be reassigned to a new signal.
@@ -27,6 +28,7 @@ export class UserComponent {
   };
 
   onSelectUser(user: any): void {
+    this.selectUser.emit(this.id);
     this.select.emit(this.id);
     console.log('User selected:', user);
   }
