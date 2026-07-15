@@ -12,9 +12,4 @@ import { DUMMY_USERS } from '../dummy-users';
 })
 export class TaskComponent {
   @Input({ required: true }) name!: string;
-  @Output() select = new EventEmitter<string>();
-
-  onSelectUser(name: string): void {
-    this.select.emit(this.name)
-  }
 }
